@@ -1,5 +1,6 @@
-import { BaseEntity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class Field extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id : string;
@@ -12,4 +13,7 @@ export class Field extends BaseEntity {
 
     @Column()
     sport : string;
+
+    @Column({nullable : true})
+    image : string;
 }
