@@ -19,4 +19,7 @@ export class BookingPlayer extends BaseEntity {
 
     @Column({default : 'football'})
     sport : string;
+
+    @Column({default : false})
+    status : boolean;
 }

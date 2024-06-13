@@ -25,10 +25,6 @@ export class BookFieldController {
         return this.bookFieldService.bookingField(body.userId,body.matchId,body.date);
     }
     
-    @Get('/booking/player')
-    getBookingPlayer(@Query('start_time') startTime : string,@Query('end_time') endTime : string,@Query('sport') sport : string){
-        return [];
-    }
 
     @Get('field')
     getFieldBySport(@Query('sport') sport : string)
