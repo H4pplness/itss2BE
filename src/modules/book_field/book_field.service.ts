@@ -14,6 +14,7 @@ export class BookFieldService {
     ) { }
 
     async getUserBooking(userId: string) {
+        console.log("USER ID : ",userId);
         return await this.dataSource.createQueryBuilder(Booking, 'booking')
             .select('booking.date')
             .addSelect('u.id', 'userId')
@@ -32,8 +33,8 @@ export class BookFieldService {
                 .addSelect('field.name', 'fieldname')
                 .from('match', 'match')
                 .innerJoin('field', 'field', 'match.field_id = field.id'), 'm', 'booking.match_id = m.id')
-            .where('booking.user_id = :userId', { userId: userId })
-            .where('booking.date >= :startDate', { startDate:new Date() })
+            .where('u.id = :userId', { userId: userId })
+            .andWhere('booking.date >= :startDate', { startDate:new Date() })
             .getRawMany();
 
     }

@@ -5,12 +5,16 @@ import { BookPlayerRepository } from "./book_player.repository";
 export class BookPlayerController {
     constructor(private readonly bookingPlayerRepository: BookPlayerRepository) { }
 
-    //done
+    //done : Lấy những tk phù hợp 
     @Get('/get-booking-player')
-    getBookingPlayer(@Query('start_time') startTime: string, @Query('end_time') endTime: string, @Query('date') date: string, @Query('sport') sport: string) {
-        return this.bookingPlayerRepository.getBookingPlayer(startTime, endTime, date, sport);
+    getBookingPlayer(@Query('start_time') startTime: string, @Query('end_time') endTime: string, @Query('date') date: string, @Query('sport') sport: string,@Query('user_id') userId:string) {
+        return this.bookingPlayerRepository.getBookingPlayer(startTime, endTime, date, sport,userId);
     }
 
+    @Get('/list-booking-player')
+    getListBookingPlayer(@Query('user_id') userId : string){
+        return this.bookingPlayerRepository.getListBookingPlayer(userId);
+    }
     //done
     @Post('invite')
     invitePlayer(@Body() body: { inviterId: string, bookingPlayerId: string }) {
